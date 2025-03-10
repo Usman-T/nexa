@@ -52,15 +52,15 @@ const routes = [
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen flex-col">
-        <Navbar />
+      <div className="flex min-h-screen w-full flex-col">
+        {/* <Navbar /> */}
         <div className="flex flex-1">
           <aside className="hidden md:block">
             <DesktopNav routes={routes} />
           </aside>
           <MobileNav routes={routes} />
-          <main className="flex-1 p-6 md:p-8">
-            <div className="mx-auto max-w-7xl">{children}</div>
+          <main className="flex-1 p-6 md:p-8 h-screen w-full">
+            <div>{children}</div>
           </main>
         </div>
       </div>
