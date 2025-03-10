@@ -1,13 +1,40 @@
-import { Clock, Download, Filter, Package, Search, ShoppingCart, Truck } from "lucide-react"
-import Link from "next/link"
+import {
+  Clock,
+  Download,
+  Filter,
+  Package,
+  Search,
+  ShoppingCart,
+  Truck,
+} from "lucide-react";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,8 +42,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { OrderStatusBadge } from "../../components/order-status-badge"
+} from "@/components/ui/dropdown-menu";
+import { OrderStatusBadge } from "@/components/custom/order-status-badge";
 
 export default function OrdersPage() {
   // Sample order data - in a real app, this would come from a database
@@ -121,7 +148,7 @@ export default function OrdersPage() {
       items: 1,
       store: "Pet Supplies",
     },
-  ]
+  ];
 
   // Order statistics
   const stats = [
@@ -149,14 +176,16 @@ export default function OrdersPage() {
       change: "+18.3%",
       icon: Package,
     },
-  ]
+  ];
 
   return (
     <div>
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Orders</h2>
-          <p className="text-muted-foreground">Manage and track customer orders across all your stores</p>
+          <p className="text-muted-foreground">
+            Manage and track customer orders across all your stores
+          </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-1">
@@ -173,12 +202,20 @@ export default function OrdersPage() {
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                {stat.title}
+              </CardTitle>
               <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
-              <p className={`text-xs ${stat.change.startsWith("+") ? "text-green-500" : "text-red-500"}`}>
+              <p
+                className={`text-xs ${
+                  stat.change.startsWith("+")
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
                 {stat.change} from last month
               </p>
             </CardContent>
@@ -202,7 +239,11 @@ export default function OrdersPage() {
             </Button>
             <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
-              <Input type="search" placeholder="Search orders..." className="h-8 w-[150px] pl-8 sm:w-[250px]" />
+              <Input
+                type="search"
+                placeholder="Search orders..."
+                className="h-8 w-[150px] pl-8 sm:w-[250px]"
+              />
             </div>
           </div>
         </div>
@@ -212,7 +253,9 @@ export default function OrdersPage() {
             <CardHeader className="flex flex-row items-center">
               <div>
                 <CardTitle>All Orders</CardTitle>
-                <CardDescription>Showing {orders.length} orders</CardDescription>
+                <CardDescription>
+                  Showing {orders.length} orders
+                </CardDescription>
               </div>
               <div className="ml-auto flex gap-2">
                 <Select defaultValue="newest">
@@ -243,7 +286,9 @@ export default function OrdersPage() {
                       <TableHead>Items</TableHead>
                       <TableHead>Store</TableHead>
                       <TableHead className="text-right">Total</TableHead>
-                      <TableHead className="w-[100px] text-right">Actions</TableHead>
+                      <TableHead className="w-[100px] text-right">
+                        Actions
+                      </TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -253,13 +298,18 @@ export default function OrdersPage() {
                           <Checkbox />
                         </TableCell>
                         <TableCell className="font-medium">
-                          <Link href={`/orders/${order.id.toLowerCase()}`} className="hover:underline">
+                          <Link
+                            href={`/orders/${order.id.toLowerCase()}`}
+                            className="hover:underline"
+                          >
                             {order.id}
                           </Link>
                         </TableCell>
                         <TableCell>
                           <div className="font-medium">{order.customer}</div>
-                          <div className="text-xs text-muted-foreground">{order.email}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {order.email}
+                          </div>
                         </TableCell>
                         <TableCell>{order.date}</TableCell>
                         <TableCell>
@@ -267,7 +317,9 @@ export default function OrdersPage() {
                         </TableCell>
                         <TableCell>{order.items}</TableCell>
                         <TableCell>{order.store}</TableCell>
-                        <TableCell className="text-right font-medium">${order.total.toFixed(2)}</TableCell>
+                        <TableCell className="text-right font-medium">
+                          ${order.total.toFixed(2)}
+                        </TableCell>
                         <TableCell className="text-right">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -279,13 +331,19 @@ export default function OrdersPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuLabel>Actions</DropdownMenuLabel>
                               <DropdownMenuItem asChild>
-                                <Link href={`/orders/${order.id.toLowerCase()}`}>View details</Link>
+                                <Link
+                                  href={`/orders/${order.id.toLowerCase()}`}
+                                >
+                                  View details
+                                </Link>
                               </DropdownMenuItem>
                               <DropdownMenuItem>Process order</DropdownMenuItem>
                               <DropdownMenuItem>Update status</DropdownMenuItem>
                               <DropdownMenuSeparator />
                               <DropdownMenuItem>Print invoice</DropdownMenuItem>
-                              <DropdownMenuItem>Send notification</DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Send notification
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
@@ -302,11 +360,15 @@ export default function OrdersPage() {
           <Card>
             <CardHeader>
               <CardTitle>Pending Orders</CardTitle>
-              <CardDescription>Orders awaiting payment confirmation</CardDescription>
+              <CardDescription>
+                Orders awaiting payment confirmation
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex h-[300px] items-center justify-center">
-                <p className="text-muted-foreground">Filtered orders will appear here</p>
+                <p className="text-muted-foreground">
+                  Filtered orders will appear here
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -316,11 +378,15 @@ export default function OrdersPage() {
           <Card>
             <CardHeader>
               <CardTitle>Processing Orders</CardTitle>
-              <CardDescription>Orders being prepared for shipping</CardDescription>
+              <CardDescription>
+                Orders being prepared for shipping
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex h-[300px] items-center justify-center">
-                <p className="text-muted-foreground">Filtered orders will appear here</p>
+                <p className="text-muted-foreground">
+                  Filtered orders will appear here
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -330,11 +396,15 @@ export default function OrdersPage() {
           <Card>
             <CardHeader>
               <CardTitle>Shipped Orders</CardTitle>
-              <CardDescription>Orders that have been shipped to customers</CardDescription>
+              <CardDescription>
+                Orders that have been shipped to customers
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex h-[300px] items-center justify-center">
-                <p className="text-muted-foreground">Filtered orders will appear here</p>
+                <p className="text-muted-foreground">
+                  Filtered orders will appear here
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -344,18 +414,22 @@ export default function OrdersPage() {
           <Card>
             <CardHeader>
               <CardTitle>Completed Orders</CardTitle>
-              <CardDescription>Orders that have been delivered and completed</CardDescription>
+              <CardDescription>
+                Orders that have been delivered and completed
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex h-[300px] items-center justify-center">
-                <p className="text-muted-foreground">Filtered orders will appear here</p>
+                <p className="text-muted-foreground">
+                  Filtered orders will appear here
+                </p>
               </div>
             </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
 
 function MoreVertical({ className }: { className?: string }) {
@@ -374,5 +448,5 @@ function MoreVertical({ className }: { className?: string }) {
       <circle cx="12" cy="5" r="1" />
       <circle cx="12" cy="19" r="1" />
     </svg>
-  )
+  );
 }

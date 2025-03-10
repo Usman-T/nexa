@@ -1,12 +1,24 @@
-import { Plus, Search } from "lucide-react"
-import Link from "next/link"
+import { Plus, Search } from "lucide-react";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { StoreCard } from "../../components/store-card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { StoreCard } from "@/components/custom/store-card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function StoresPage() {
   // Sample store data - in a real app, this would come from a database
@@ -92,14 +104,16 @@ export default function StoresPage() {
       orders: 89,
       revenue: 22450.75,
     },
-  ]
+  ];
 
   return (
     <div>
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Stores</h2>
-          <p className="text-muted-foreground">Manage and monitor all your e-commerce stores</p>
+          <p className="text-muted-foreground">
+            Manage and monitor all your e-commerce stores
+          </p>
         </div>
         <Button asChild>
           <Link href="/stores/new">
@@ -115,7 +129,11 @@ export default function StoresPage() {
           </label>
           <div className="relative mt-1">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input id="search-stores" placeholder="Search stores..." className="pl-8" />
+            <Input
+              id="search-stores"
+              placeholder="Search stores..."
+              className="pl-8"
+            />
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 md:flex">
@@ -186,19 +204,33 @@ export default function StoresPage() {
           <Card>
             <CardHeader>
               <CardTitle>Store List</CardTitle>
-              <CardDescription>A detailed list view of all your stores</CardDescription>
+              <CardDescription>
+                A detailed list view of all your stores
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="relative w-full overflow-auto">
                 <table className="w-full caption-bottom text-sm">
                   <thead className="[&_tr]:border-b">
                     <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Store</th>
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Status</th>
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Products</th>
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Orders</th>
-                      <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">Revenue</th>
-                      <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">Actions</th>
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                        Store
+                      </th>
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                        Status
+                      </th>
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                        Products
+                      </th>
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                        Orders
+                      </th>
+                      <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">
+                        Revenue
+                      </th>
+                      <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="[&_tr:last-child]:border-0">
@@ -218,7 +250,9 @@ export default function StoresPage() {
                             </div>
                             <div>
                               <div className="font-medium">{store.title}</div>
-                              <div className="text-xs text-muted-foreground">{store.description}</div>
+                              <div className="text-xs text-muted-foreground">
+                                {store.description}
+                              </div>
                             </div>
                           </div>
                         </td>
@@ -228,23 +262,38 @@ export default function StoresPage() {
                               store.status === "active"
                                 ? "bg-green-100 text-green-800"
                                 : store.status === "inactive"
-                                  ? "bg-gray-100 text-gray-800"
-                                  : "bg-yellow-100 text-yellow-800"
+                                ? "bg-gray-100 text-gray-800"
+                                : "bg-yellow-100 text-yellow-800"
                             }`}
                           >
-                            {store.status.charAt(0).toUpperCase() + store.status.slice(1)}
+                            {store.status.charAt(0).toUpperCase() +
+                              store.status.slice(1)}
                           </div>
                         </td>
                         <td className="p-4 align-middle">{store.products}</td>
                         <td className="p-4 align-middle">{store.orders}</td>
-                        <td className="p-4 align-middle text-right">${store.revenue.toFixed(2)}</td>
+                        <td className="p-4 align-middle text-right">
+                          ${store.revenue.toFixed(2)}
+                        </td>
                         <td className="p-4 align-middle text-right">
                           <div className="flex justify-end gap-2">
                             <Button variant="ghost" size="sm" asChild>
-                              <Link href={`/stores/${store.title.toLowerCase().replace(/\s+/g, "-")}`}>View</Link>
+                              <Link
+                                href={`/stores/${store.title
+                                  .toLowerCase()
+                                  .replace(/\s+/g, "-")}`}
+                              >
+                                View
+                              </Link>
                             </Button>
                             <Button variant="ghost" size="sm" asChild>
-                              <Link href={`/stores/${store.title.toLowerCase().replace(/\s+/g, "-")}/edit`}>Edit</Link>
+                              <Link
+                                href={`/stores/${store.title
+                                  .toLowerCase()
+                                  .replace(/\s+/g, "-")}/edit`}
+                              >
+                                Edit
+                              </Link>
                             </Button>
                           </div>
                         </td>
@@ -258,6 +307,5 @@ export default function StoresPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
-

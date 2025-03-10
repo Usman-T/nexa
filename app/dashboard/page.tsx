@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { StoreCard } from "../components/store-card";
-import { RecentSales } from "../components/recent-sales";
+import { StoreCard } from "@/components/custom/store-card";
+import { RecentSales } from "@/components/custom/recent-sales";
 
 export default function DashboardPage() {
   return (

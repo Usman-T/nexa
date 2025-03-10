@@ -1,13 +1,34 @@
-import { AlertCircle, CheckCircle, FileText, MoreVertical, Package, Plus, Search, Tag } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import {
+  AlertCircle,
+  CheckCircle,
+  FileText,
+  MoreVertical,
+  Package,
+  Plus,
+  Search,
+  Tag,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,9 +36,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { ProductCard } from "../../components/product-card"
-import { Badge } from "@/components/ui/badge"
+} from "@/components/ui/dropdown-menu";
+import { ProductCard } from "@/components/custom/product-card";
+import { Badge } from "@/components/ui/badge";
 
 export default function ProductsPage() {
   // Sample product data - in a real app, this would come from a database
@@ -166,7 +187,7 @@ export default function ProductsPage() {
       store: "Fashion Boutique",
       image: "/placeholder.svg?height=200&width=200",
     },
-  ]
+  ];
 
   // Product statistics
   const stats = [
@@ -194,7 +215,7 @@ export default function ProductsPage() {
       change: "+4.3%",
       icon: FileText,
     },
-  ]
+  ];
 
   // Categories for filtering
   const categories = [
@@ -211,14 +232,16 @@ export default function ProductsPage() {
     "Fitness",
     "Appliances",
     "Accessories",
-  ]
+  ];
 
   return (
     <div>
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Products</h2>
-          <p className="text-muted-foreground">Manage and organize your product catalog</p>
+          <p className="text-muted-foreground">
+            Manage and organize your product catalog
+          </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-1">
@@ -237,12 +260,20 @@ export default function ProductsPage() {
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                {stat.title}
+              </CardTitle>
               <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
-              <p className={`text-xs ${stat.change.startsWith("+") ? "text-green-500" : "text-red-500"}`}>
+              <p
+                className={`text-xs ${
+                  stat.change.startsWith("+")
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
                 {stat.change} from last month
               </p>
             </CardContent>
@@ -258,7 +289,11 @@ export default function ProductsPage() {
             </label>
             <div className="relative mt-1">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input id="search-products" placeholder="Search products..." className="pl-8" />
+              <Input
+                id="search-products"
+                placeholder="Search products..."
+                className="pl-8"
+              />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 md:flex">
@@ -267,12 +302,18 @@ export default function ProductsPage() {
                 Category
               </label>
               <Select defaultValue="all">
-                <SelectTrigger id="category-filter" className="w-full md:w-[180px]">
+                <SelectTrigger
+                  id="category-filter"
+                  className="w-full md:w-[180px]"
+                >
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map((category) => (
-                    <SelectItem key={category} value={category.toLowerCase().replace(/\s+/g, "_")}>
+                    <SelectItem
+                      key={category}
+                      value={category.toLowerCase().replace(/\s+/g, "_")}
+                    >
                       {category}
                     </SelectItem>
                   ))}
@@ -284,7 +325,10 @@ export default function ProductsPage() {
                 Status
               </label>
               <Select defaultValue="all">
-                <SelectTrigger id="status-filter" className="w-full md:w-[150px]">
+                <SelectTrigger
+                  id="status-filter"
+                  className="w-full md:w-[150px]"
+                >
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -300,15 +344,22 @@ export default function ProductsPage() {
                 Store
               </label>
               <Select defaultValue="all">
-                <SelectTrigger id="store-filter" className="w-full md:w-[180px]">
+                <SelectTrigger
+                  id="store-filter"
+                  className="w-full md:w-[180px]"
+                >
                   <SelectValue placeholder="Store" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Stores</SelectItem>
-                  <SelectItem value="fashion_boutique">Fashion Boutique</SelectItem>
+                  <SelectItem value="fashion_boutique">
+                    Fashion Boutique
+                  </SelectItem>
                   <SelectItem value="tech_gadgets">Tech Gadgets</SelectItem>
                   <SelectItem value="home_decor">Home Decor</SelectItem>
-                  <SelectItem value="beauty_products">Beauty Products</SelectItem>
+                  <SelectItem value="beauty_products">
+                    Beauty Products
+                  </SelectItem>
                   <SelectItem value="sports_gear">Sports Gear</SelectItem>
                   <SelectItem value="pet_supplies">Pet Supplies</SelectItem>
                 </SelectContent>
@@ -327,8 +378,12 @@ export default function ProductsPage() {
                   <SelectItem value="oldest">Oldest</SelectItem>
                   <SelectItem value="price-high">Price: High to Low</SelectItem>
                   <SelectItem value="price-low">Price: Low to High</SelectItem>
-                  <SelectItem value="inventory-high">Inventory: High to Low</SelectItem>
-                  <SelectItem value="inventory-low">Inventory: Low to High</SelectItem>
+                  <SelectItem value="inventory-high">
+                    Inventory: High to Low
+                  </SelectItem>
+                  <SelectItem value="inventory-low">
+                    Inventory: Low to High
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -368,7 +423,9 @@ export default function ProductsPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Product List</CardTitle>
-                <CardDescription>A detailed list view of all your products</CardDescription>
+                <CardDescription>
+                  A detailed list view of all your products
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="relative w-full overflow-auto">
@@ -378,15 +435,27 @@ export default function ProductsPage() {
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
                           <Checkbox />
                         </th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Product</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Status</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                          Product
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                          Status
+                        </th>
                         <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
                           Inventory
                         </th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Category</th>
-                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Store</th>
-                        <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">Price</th>
-                        <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">Actions</th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                          Category
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                          Store
+                        </th>
+                        <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">
+                          Price
+                        </th>
+                        <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">
+                          Actions
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="[&_tr:last-child]:border-0">
@@ -410,8 +479,12 @@ export default function ProductsPage() {
                                 />
                               </div>
                               <div>
-                                <div className="font-medium">{product.name}</div>
-                                <div className="text-xs text-muted-foreground">{product.id}</div>
+                                <div className="font-medium">
+                                  {product.name}
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                  {product.id}
+                                </div>
                               </div>
                             </div>
                           </td>
@@ -425,10 +498,14 @@ export default function ProductsPage() {
                               <span className="text-red-500">Out of stock</span>
                             )}
                           </td>
-                          <td className="p-4 align-middle">{product.category}</td>
+                          <td className="p-4 align-middle">
+                            {product.category}
+                          </td>
                           <td className="p-4 align-middle">{product.store}</td>
                           <td className="p-4 align-middle text-right">
-                            <div className="font-medium">${product.price.toFixed(2)}</div>
+                            <div className="font-medium">
+                              ${product.price.toFixed(2)}
+                            </div>
                             {product.comparePrice && (
                               <div className="text-xs text-muted-foreground line-through">
                                 ${product.comparePrice.toFixed(2)}
@@ -446,15 +523,29 @@ export default function ProductsPage() {
                               <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuItem asChild>
-                                  <Link href={`/products/${product.id.toLowerCase()}`}>View details</Link>
+                                  <Link
+                                    href={`/products/${product.id.toLowerCase()}`}
+                                  >
+                                    View details
+                                  </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem asChild>
-                                  <Link href={`/products/${product.id.toLowerCase()}/edit`}>Edit product</Link>
+                                  <Link
+                                    href={`/products/${product.id.toLowerCase()}/edit`}
+                                  >
+                                    Edit product
+                                  </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem>Duplicate product</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  Duplicate product
+                                </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>Archive product</DropdownMenuItem>
-                                <DropdownMenuItem className="text-red-600">Delete product</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  Archive product
+                                </DropdownMenuItem>
+                                <DropdownMenuItem className="text-red-600">
+                                  Delete product
+                                </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </td>
@@ -473,12 +564,24 @@ export default function ProductsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Product Categories</CardTitle>
-            <CardDescription>Organize your products with categories</CardDescription>
+            <CardDescription>
+              Organize your products with categories
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {["Clothing", "Electronics", "Home Decor", "Beauty", "Footwear", "Pet Accessories"].map((category) => (
-                <div key={category} className="flex items-center justify-between rounded-lg border p-4">
+              {[
+                "Clothing",
+                "Electronics",
+                "Home Decor",
+                "Beauty",
+                "Footwear",
+                "Pet Accessories",
+              ].map((category) => (
+                <div
+                  key={category}
+                  className="flex items-center justify-between rounded-lg border p-4"
+                >
                   <div>
                     <h3 className="font-medium">{category}</h3>
                     <p className="text-sm text-muted-foreground">12 products</p>
@@ -499,35 +602,37 @@ export default function ProductsPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
 
 function ProductStatusBadge({ status }: { status: string }) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "bg-green-100 text-green-800 hover:bg-green-100"
+        return "bg-green-100 text-green-800 hover:bg-green-100";
       case "out_of_stock":
-        return "bg-red-100 text-red-800 hover:bg-red-100"
+        return "bg-red-100 text-red-800 hover:bg-red-100";
       case "draft":
-        return "bg-gray-100 text-gray-800 hover:bg-gray-100"
+        return "bg-gray-100 text-gray-800 hover:bg-gray-100";
       default:
-        return "bg-gray-100 text-gray-800 hover:bg-gray-100"
+        return "bg-gray-100 text-gray-800 hover:bg-gray-100";
     }
-  }
+  };
 
   const getStatusLabel = (status: string) => {
     switch (status) {
       case "active":
-        return "Active"
+        return "Active";
       case "out_of_stock":
-        return "Out of Stock"
+        return "Out of Stock";
       case "draft":
-        return "Draft"
+        return "Draft";
       default:
-        return status.charAt(0).toUpperCase() + status.slice(1)
+        return status.charAt(0).toUpperCase() + status.slice(1);
     }
-  }
+  };
 
-  return <Badge className={getStatusColor(status)}>{getStatusLabel(status)}</Badge>
+  return (
+    <Badge className={getStatusColor(status)}>{getStatusLabel(status)}</Badge>
+  );
 }

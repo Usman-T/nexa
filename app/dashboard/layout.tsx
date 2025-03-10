@@ -1,7 +1,8 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import React from "react";
-import MobileNav from "../components/MobileNav";
-import DesktopNav from "../components/DesktopNav";
+import MobileNav from "@/components/custom/MobileNav";
+import DesktopNav from "@/components/custom/DesktopNav";
+import Navbar from "@/components/custom/Navbar";
 
 const routes = [
   {
@@ -52,26 +53,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen flex-col">
-        {/* <header className="sticky top-0 z-40 border-b bg-background">
-          <div className="container flex h-16 items-center justify-between py-4">
-            <div className="flex items-center gap-2">
-              <SidebarTrigger className="md:hidden" />
-              <Link href="/" className="flex items-center gap-2">
-                <Store className="h-6 w-6" />
-                <span className="font-bold">ShopBuilder</span>
-              </Link>
-            </div>
-            <div className="flex items-center gap-2">
-              <form className="hidden md:block">
-                <div className="relative">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input type="search" placeholder="Search..." className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]" />
-                </div>
-              </form>
-              <UserNav />
-            </div>
-          </div>
-        </header> */}
+        <Navbar />
         <div className="flex flex-1">
           <aside className="hidden md:block">
             <DesktopNav routes={routes} />
