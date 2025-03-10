@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { DashboardShell } from "../components/dashboard-shell"
-import { StoreCard } from "../components/store-card"
+import { StoreCard } from "../../components/store-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function StoresPage() {
@@ -96,7 +95,7 @@ export default function StoresPage() {
   ]
 
   return (
-    <DashboardShell>
+    <div>
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Stores</h2>
@@ -258,7 +257,7 @@ export default function StoresPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </DashboardShell>
+    </div>
   )
 }
 

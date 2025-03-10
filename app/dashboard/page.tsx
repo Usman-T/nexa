@@ -1,16 +1,21 @@
-import { DollarSign, Package, ShoppingCart, Users } from "lucide-react"
-import Link from "next/link"
+import { DollarSign, Package, ShoppingCart, Users } from "lucide-react";
+import Link from "next/link";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { DashboardShell } from "../components/dashboard-shell"
-import { StoreCard } from "../components/store-card"
-import { RecentSales } from "../components/recent-sales"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { StoreCard } from "../components/store-card";
+import { RecentSales } from "../components/recent-sales";
 
 export default function DashboardPage() {
   return (
-    <DashboardShell>
+    <div>
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
         <div className="flex items-center space-x-2">
@@ -30,42 +35,58 @@ export default function DashboardPage() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Total Revenue
+                </CardTitle>
                 <DollarSign className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">$45,231.89</div>
-                <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+                <p className="text-xs text-muted-foreground">
+                  +20.1% from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Active Stores</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Active Stores
+                </CardTitle>
                 <Package className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+12</div>
-                <p className="text-xs text-muted-foreground">+2 from last month</p>
+                <p className="text-xs text-muted-foreground">
+                  +2 from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Total Orders
+                </CardTitle>
                 <ShoppingCart className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+573</div>
-                <p className="text-xs text-muted-foreground">+201 from last month</p>
+                <p className="text-xs text-muted-foreground">
+                  +201 from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Active Customers</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Active Customers
+                </CardTitle>
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+2350</div>
-                <p className="text-xs text-muted-foreground">+180 from last month</p>
+                <p className="text-xs text-muted-foreground">
+                  +180 from last month
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -73,7 +94,9 @@ export default function DashboardPage() {
             <Card className="col-span-4">
               <CardHeader>
                 <CardTitle>Monthly Overview</CardTitle>
-                <CardDescription>Your store performance for the current month</CardDescription>
+                <CardDescription>
+                  Your store performance for the current month
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-8">
@@ -85,7 +108,9 @@ export default function DashboardPage() {
                           +20.1%
                         </div>
                       </div>
-                      <div className="text-sm text-muted-foreground">$45,231.89</div>
+                      <div className="text-sm text-muted-foreground">
+                        $45,231.89
+                      </div>
                     </div>
                     <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
                       <div className="h-full w-[75%] rounded-full bg-primary"></div>
@@ -137,7 +162,9 @@ export default function DashboardPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="text-sm font-medium">Conversion Rate</div>
+                        <div className="text-sm font-medium">
+                          Conversion Rate
+                        </div>
                         <div className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-800">
                           +3.2%
                         </div>
@@ -158,7 +185,9 @@ export default function DashboardPage() {
             <Card className="col-span-3">
               <CardHeader>
                 <CardTitle>Recent Sales</CardTitle>
-                <CardDescription>You made 265 sales this month.</CardDescription>
+                <CardDescription>
+                  You made 265 sales this month.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <RecentSales />
@@ -228,13 +257,17 @@ export default function DashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle>Analytics</CardTitle>
-              <CardDescription>View detailed analytics for all your stores.</CardDescription>
+              <CardDescription>
+                View detailed analytics for all your stores.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-[400px] w-full">
                 {/* Analytics content would go here */}
                 <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
-                  <p className="text-muted-foreground">Analytics dashboard coming soon</p>
+                  <p className="text-muted-foreground">
+                    Analytics dashboard coming soon
+                  </p>
                   <Button>Request Early Access</Button>
                 </div>
               </div>
@@ -242,7 +275,6 @@ export default function DashboardPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </DashboardShell>
-  )
+    </div>
+  );
 }
-

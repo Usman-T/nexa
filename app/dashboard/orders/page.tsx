@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { DashboardShell } from "../components/dashboard-shell"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   DropdownMenu,
@@ -17,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { OrderStatusBadge } from "../components/order-status-badge"
+import { OrderStatusBadge } from "../../components/order-status-badge"
 
 export default function OrdersPage() {
   // Sample order data - in a real app, this would come from a database
@@ -153,7 +152,7 @@ export default function OrdersPage() {
   ]
 
   return (
-    <DashboardShell>
+    <div>
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Orders</h2>
@@ -355,7 +354,7 @@ export default function OrdersPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </DashboardShell>
+    </div>
   )
 }
 
@@ -377,4 +376,3 @@ function MoreVertical({ className }: { className?: string }) {
     </svg>
   )
 }
-

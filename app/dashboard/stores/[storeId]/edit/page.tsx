@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { DashboardShell } from "@/app/components/dashboard-shell"
 import { StoreStatusSelect } from "@/app/components/store-status-select"
 import { ImageUpload } from "@/app/components/image-upload"
 import { Switch } from "@/components/ui/switch"
@@ -25,7 +24,7 @@ export default function EditStorePage({ params }: { params: { storeId: string } 
     .join(" ")
 
   return (
-    <DashboardShell>
+    <div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Button variant="outline" size="icon" asChild>
@@ -510,7 +509,7 @@ export default function EditStorePage({ params }: { params: { storeId: string } 
           </Card>
         </TabsContent>
       </Tabs>
-    </DashboardShell>
+    </div>
   )
 }
 
