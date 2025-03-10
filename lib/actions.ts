@@ -66,8 +66,7 @@ export const authenticate = async (
     await signIn("credentials", {
       username: formData.get("name"),
       password: formData.get("password"),
-      redirectTo: "/dashboard",
-      redirect: true,
+      redirect: false,
     });
   } catch (error) {
     console.log(error);
@@ -82,6 +81,8 @@ export const authenticate = async (
 
     throw error;
   }
+
+  redirect("/dashboard");
 };
 
 export const handleSignOut = async () => {
@@ -96,7 +97,7 @@ export const getCurrentUser = async () => {
 
   const user = prisma.user.findUnique({
     where: {
-      username: session.user.username,
+      username: session.user.name,
     },
   });
 

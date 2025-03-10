@@ -1,101 +1,248 @@
-import Image from "next/image";
+import { DollarSign, Package, ShoppingCart, Users } from "lucide-react"
+import Link from "next/link"
 
-export default function Home() {
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DashboardShell } from "./components/dashboard-shell"
+import { StoreCard } from "./components/store-card"
+import { RecentSales } from "./components/recent-sales"
+
+export default function DashboardPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <DashboardShell>
+      <div className="flex items-center justify-between space-y-2">
+        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+        <div className="flex items-center space-x-2">
+          <Button>Download Report</Button>
+          <Button variant="default">
+            <Link href="/stores/new">Create Store</Link>
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </div>
+      <Tabs defaultValue="overview" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="stores">Stores</TabsTrigger>
+          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview" className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                <DollarSign className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">$45,231.89</div>
+                <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Active Stores</CardTitle>
+                <Package className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">+12</div>
+                <p className="text-xs text-muted-foreground">+2 from last month</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+                <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">+573</div>
+                <p className="text-xs text-muted-foreground">+201 from last month</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Active Customers</CardTitle>
+                <Users className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">+2350</div>
+                <p className="text-xs text-muted-foreground">+180 from last month</p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Monthly Overview</CardTitle>
+                <CardDescription>Your store performance for the current month</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-8">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm font-medium">Revenue</div>
+                        <div className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-800">
+                          +20.1%
+                        </div>
+                      </div>
+                      <div className="text-sm text-muted-foreground">$45,231.89</div>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+                      <div className="h-full w-[75%] rounded-full bg-primary"></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <div>$0</div>
+                      <div>Target: $60,000</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm font-medium">Orders</div>
+                        <div className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-800">
+                          +35.2%
+                        </div>
+                      </div>
+                      <div className="text-sm text-muted-foreground">573</div>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+                      <div className="h-full w-[65%] rounded-full bg-blue-500"></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <div>0</div>
+                      <div>Target: 800</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm font-medium">New Customers</div>
+                        <div className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-800">
+                          +12.5%
+                        </div>
+                      </div>
+                      <div className="text-sm text-muted-foreground">180</div>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+                      <div className="h-full w-[45%] rounded-full bg-yellow-500"></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <div>0</div>
+                      <div>Target: 400</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm font-medium">Conversion Rate</div>
+                        <div className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-800">
+                          +3.2%
+                        </div>
+                      </div>
+                      <div className="text-sm text-muted-foreground">4.5%</div>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+                      <div className="h-full w-[55%] rounded-full bg-purple-500"></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <div>0%</div>
+                      <div>Target: 8%</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Recent Sales</CardTitle>
+                <CardDescription>You made 265 sales this month.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <RecentSales />
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        <TabsContent value="stores" className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <StoreCard
+              title="Fashion Boutique"
+              description="Clothing and accessories store"
+              image="/placeholder.svg?height=100&width=200"
+              status="active"
+              products={124}
+              orders={432}
+              revenue={12540.5}
+            />
+            <StoreCard
+              title="Tech Gadgets"
+              description="Electronics and gadgets store"
+              image="/placeholder.svg?height=100&width=200"
+              status="active"
+              products={87}
+              orders={256}
+              revenue={18320.75}
+            />
+            <StoreCard
+              title="Home Decor"
+              description="Home decoration items"
+              image="/placeholder.svg?height=100&width=200"
+              status="active"
+              products={65}
+              orders={198}
+              revenue={8750.25}
+            />
+            <StoreCard
+              title="Beauty Products"
+              description="Cosmetics and beauty items"
+              image="/placeholder.svg?height=100&width=200"
+              status="inactive"
+              products={42}
+              orders={0}
+              revenue={0}
+            />
+            <StoreCard
+              title="Sports Gear"
+              description="Sports equipment and apparel"
+              image="/placeholder.svg?height=100&width=200"
+              status="active"
+              products={93}
+              orders={312}
+              revenue={15680.3}
+            />
+            <StoreCard
+              title="Pet Supplies"
+              description="Products for pets"
+              image="/placeholder.svg?height=100&width=200"
+              status="active"
+              products={56}
+              orders={187}
+              revenue={6430.8}
+            />
+          </div>
+        </TabsContent>
+        <TabsContent value="analytics" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Analytics</CardTitle>
+              <CardDescription>View detailed analytics for all your stores.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[400px] w-full">
+                {/* Analytics content would go here */}
+                <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
+                  <p className="text-muted-foreground">Analytics dashboard coming soon</p>
+                  <Button>Request Early Access</Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </DashboardShell>
+  )
 }
+
