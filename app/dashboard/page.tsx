@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StoreCard } from "@/components/custom/store-card";
 import { RecentSales } from "@/components/custom/recent-sales";
 
-export default function DashboardPage() {
+export default async function DashboardPage () {
   return (
     <>
       <div className="flex items-center justify-between space-y-2">

@@ -55,11 +55,11 @@ const Login = () => {
           <form action={formAction} className="w-full space-y-4">
             <div className="space-y-3">
               <div className="space-y-2">
-                <Label htmlFor={`${id}-name`}>Name</Label>
+                <Label htmlFor={`${id}-email`}>Email</Label>
                 <Input
-                  placeholder="Enter your name"
-                  name="name"
-                  type="text"
+                  placeholder="Enter your email"
+                  name="email"
+                  type="email"
                   required
                 />
               </div>
@@ -74,7 +74,6 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Remember Me & Forgot Password */}
             <div className="flex justify-between items-center text-sm">
               <div className="flex items-center gap-2">
                 <Checkbox id={`${id}-remember`} />

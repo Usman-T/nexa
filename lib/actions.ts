@@ -2,7 +2,7 @@
 
 import prisma from "@/prisma";
 import { z } from "zod";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth, signIn, signOut } from "@/auth";
@@ -91,16 +91,17 @@ export const handleSignOut = async () => {
 
 export const getCurrentUser = async () => {
   const session = await auth();
+  
   if (!session?.user) {
     return null;
   }
 
-  const user = prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
-      username: session.user.name,
+     email: session.user.email
     },
   });
-
+  
   if (!user) {
     return null;
   }

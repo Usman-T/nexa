@@ -14,6 +14,7 @@ interface ImageUploadProps {
   maxWidth?: number
   maxHeight?: number
   aspectRatio?: string
+  onImageChange?: (image: string) => void
 }
 
 export function ImageUpload({
@@ -21,6 +22,7 @@ export function ImageUpload({
   maxWidth = 500,
   maxHeight = 500,
   aspectRatio = "1:1",
+  onImageChange,
 }: ImageUploadProps) {
   const [image, setImage] = useState(defaultImage)
   const [isDragging, setIsDragging] = useState(false)
@@ -48,7 +50,11 @@ export function ImageUpload({
         const reader = new FileReader()
         reader.onload = (event) => {
           if (event.target?.result) {
-            setImage(event.target.result as string)
+            const newImage = event.target.result as string
+            setImage(newImage)
+            if (onImageChange) {
+              onImageChange(newImage)
+            }
           }
         }
         reader.readAsDataURL(file)
@@ -62,10 +68,21 @@ export function ImageUpload({
       const reader = new FileReader()
       reader.onload = (event) => {
         if (event.target?.result) {
-          setImage(event.target.result as string)
+          const newImage = event.target.result as string
+          setImage(newImage)
+          if (onImageChange) {
+            onImageChange(newImage)
+          }
         }
       }
       reader.readAsDataURL(file)
+    }
+  }
+
+  const handleRemove = () => {
+    setImage(defaultImage)
+    if (onImageChange) {
+      onImageChange(defaultImage)
     }
   }
 
@@ -85,7 +102,7 @@ export function ImageUpload({
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity hover:opacity-100">
                   <div className="text-center text-white">
                     <p className="mb-2">Click or drag to replace</p>
-                    <Button variant="secondary" size="sm" onClick={() => setImage("")}>
+                    <Button variant="secondary" size="sm" onClick={handleRemove}>
                       Remove
                     </Button>
                   </div>

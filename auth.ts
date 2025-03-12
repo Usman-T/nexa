@@ -1,16 +1,16 @@
 import NextAuth from "next-auth";
 import { authConfig } from "@/auth.config";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { z } from "zod";
 import prisma from "@/prisma";
 import { User } from "@prisma/client";
 
-const getUser = async (username: string): Promise<null | User> => {
+const getUser = async (email: string): Promise<null | User> => {
   try {
     const user = await prisma.user.findUnique({
       where: {
-        username: username,
+        email: email,
       },
     });
 
@@ -27,17 +27,19 @@ export const { auth, signIn, signOut } = NextAuth({
     CredentialsProvider({
       async authorize(credentials) {
         const parsedCredentials = z
-          .object({ username: z.string(), password: z.string().min(6) })
+          .object({ email: z.string(), password: z.string().min(6) })
           .safeParse(credentials);
 
         if (parsedCredentials.success) {
-          const { username, password } = parsedCredentials.data;
-          const user = await getUser(username);
+          const { email, password } = parsedCredentials.data;
+          const user = await getUser(email);
           if (!user) return null;
           const passwordsMatch = await bcrypt.compare(
             password,
             user.passwordHash
           );
+
+          console.log({ passwordsMatch });
           if (passwordsMatch) {
             return user;
           }

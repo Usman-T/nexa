@@ -8,10 +8,121 @@ datasource db {
 }
 
 model User {
-  id           String @id @default(uuid())
-  username     String @unique
+  id           String  @id @default(uuid())
+  username     String  @unique
   passwordHash String
-  email        String
+  email        String  @unique
+  role         Role    @default(OWNER)
+  stores       Store[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
+enum Role {
+  OWNER
+  CUSTOMER
+  ADMIN
+}
 
+model Customer {
+  id        String   @id @default(uuid())
+  email     String
+  firstName String
+  lastName  String
+  store     Store    @relation(fields: [storeId], references: [id])
+  storeId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Order     Order[]
+}
+
+model Store {
+  id                String      @id @default(uuid())
+  name              String
+  slug              String      @unique
+  description       String?
+  status            StoreStatus @default(ACTIVE)
+  logo              String?
+  banner            String?
+  primaryColor      String?
+  accentColor       String?
+  fontFamily        String?
+  email             String
+  phone             String?
+  address           String?
+  taxCalculation    Boolean     @default(true)
+  inventoryTracking Boolean     @default(true)
+  customerAccounts  Boolean     @default(true)
+  guestCheckout     Boolean     @default(true)
+  user              User        @relation(fields: [userId], references: [id])
+  userId            String
+  products          Product[]
+  customers         Customer[]
+  orders            Order[]
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+enum StoreStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+model Product {
+  id            String        @id @default(uuid())
+  name          String
+  slug          String
+  description   String?
+  price         Decimal       @db.Decimal(10, 2)
+  inventory     Int           @default(0)
+  status        ProductStatus @default(ACTIVE)
+  images        String[]
+  featuredImage String?
+  store         Store         @relation(fields: [storeId], references: [id])
+  storeId       String
+  tags          String[]
+  orderItems    OrderItem[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([storeId, slug])
+}
+
+enum ProductStatus {
+  ACTIVE
+  DRAFT
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  customer   Customer?   @relation(fields: [customerId], references: [id])
+  customerId String?
+  store      Store       @relation(fields: [storeId], references: [id])
+  storeId    String
+  status     OrderStatus @default(PENDING)
+  items      OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  subtotal  Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
